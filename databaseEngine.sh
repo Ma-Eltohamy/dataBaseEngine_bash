@@ -1,8 +1,7 @@
-#!/usr/bin/bash
+#!/usr/bin/bash 
 shopt -s extglob
 
 function printMenu(){
-  PS3="Please choose an option: "
 
   local -a menu=("$@") # Here we retrive the entire number of passed arguments
   # and here "$@" is different from $@ 
@@ -36,6 +35,9 @@ function run(){
   source ./connectToDataBase.sh
   source ./listDataBases.sh
   source ./dropDataBase.sh
+  source ./createTable.sh
+  source ./listTables.sh
+  source ./manageDataBase.sh
   source ./validation.sh
 
   # first make sure that there's a "$HOME/DBMD" dir
