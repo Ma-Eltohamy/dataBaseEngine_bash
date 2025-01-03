@@ -37,17 +37,20 @@ function run(){
   source ./dropDataBase.sh
   source ./createTable.sh
   source ./listTables.sh
+  source ./selectFromTable.sh
   source ./manageDataBase.sh
   source ./insertIntoTable.sh
+  source ./dropTable.sh
   source ./validation.sh
+
 
   # first make sure that there's a "$HOME/DBMD" dir
   if ! isAlreadyExists -m 
   then
     mkdir -p "$HOME/DBMS"
   fi
-  
 
+  # local -a just a way of declaration for the array 
   local -a menuElements=(
     "Create Database"
     "List Database"

@@ -17,7 +17,7 @@ function isAlreadyExists(){
       fi;;
     -t)
       if test -f "$HOME/DBMS/$dataBaseName/$tableName.meta" || \
-        test -f "$HOME/DBMS/$dataBaseName$tableName.data"
+        test -f "$HOME/DBMS/$dataBaseName/$tableName.data"
             then
               return 0 # Success
       fi;;

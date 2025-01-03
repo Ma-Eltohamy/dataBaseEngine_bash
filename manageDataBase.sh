@@ -22,13 +22,13 @@ function manageDataBase(){
                 2) listTables
                     break ;;
 
-                3) echo "Dropping a table..."
+                3) dropTable
                     break ;;
 
                 4) insertIntoTable
                     break ;;
 
-                5) echo "Selecting data from a table..."
+                5) selectFromTable
                     break ;;
 
                 6) echo "Deleting data from a table..."
