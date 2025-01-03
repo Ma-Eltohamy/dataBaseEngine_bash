@@ -100,9 +100,9 @@ function createTable {
 
     # Write metadata to the meta file
     {
-        echo "Table Name: $tableName"
-        echo "Columns: ${#colNames[@]}"
-        echo "Primary Key: $primaryKey"
+        echo "$tableName"
+        echo "${#colNames[@]}"
+        echo "$primaryKey"
         for ((i = 0; i < colsNum; i++))
         do
             echo "Column $((i + 1)): ${colNames[i]} (${colTypes[i]})"

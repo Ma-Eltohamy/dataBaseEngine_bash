@@ -38,6 +38,7 @@ function run(){
   source ./createTable.sh
   source ./listTables.sh
   source ./manageDataBase.sh
+  source ./insertIntoTable.sh
   source ./validation.sh
 
   # first make sure that there's a "$HOME/DBMD" dir

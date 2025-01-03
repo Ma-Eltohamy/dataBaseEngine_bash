@@ -25,7 +25,7 @@ function manageDataBase(){
                 3) echo "Dropping a table..."
                     break ;;
 
-                4) echo "Inserting data into a table..."
+                4) insertIntoTable
                     break ;;
 
                 5) echo "Selecting data from a table..."
