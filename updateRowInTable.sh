@@ -86,7 +86,14 @@ function updateRowInTable {
                     return;;
             esac
         done
-
+        # Check if the new primary key value already exists
+        if [[ "$colName" == "$primaryKey" && "$newValue" != "$oldValue" ]]; then
+            if grep -q "^$newValue:" "$dataFile"
+            then
+                echo "[Error] A row with the primary key '$newValue' already exists. Please enter a unique primary key."
+                return
+            fi
+        fi
         newRow+=("$newValue")
     done
 

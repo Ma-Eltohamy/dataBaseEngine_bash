@@ -1,8 +1,4 @@
 function selectFromTable() {
-  source ./selectAllData.sh
-  source ./selectByPrimaryKey.sh
-  source ./selectSpecificColumns.sh
-  source ./selectByCondition.sh
   dataBaseName=$1
 
   menuItems=("Select all data" "Select specific columns" "Select by primary key" "Select by condition" "Sort data" "Exit")

@@ -45,6 +45,10 @@ function run(){
   source ./dropTable.sh
   source ./validation.sh
 
+  source ./selectAllData.sh
+  source ./selectByPrimaryKey.sh
+  source ./selectSpecificColumns.sh
+  source ./selectByCondition.sh
 
   # first make sure that there's a "$HOME/DBMD" dir
   if ! isAlreadyExists -m 
