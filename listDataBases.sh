@@ -1,14 +1,21 @@
 function listDataBases(){
-  local db_dir="$HOME/DBMS"
+  local dataBaseDir="$HOME/DBMS"
 
   # Check if the directory exists
   if isAlreadyExists -m
   then
-      echo "Listing databases in $db_dir:"
+      echo "Listing databases in $dataBaseDir:"
       echo "---------------------------------"
-      ls -1 "$db_dir" | sort
+      
+      # Check if the directory is empty
+      if [ -z "$(ls -1 "$dataBaseDir")" ]; then
+          echo "No databases found."
+      else
+          ls -1 "$dataBaseDir" | sort
+      fi
+      
       echo "---------------------------------"
   else
-      echo "Error: Directory '$db_dir' does not exist."
+      echo "Error: Directory '$dataBaseDir' does not exist."
   fi
 }

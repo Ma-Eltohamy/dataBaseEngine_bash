@@ -1,4 +1,12 @@
 function dropDataBase() {
+    local dataBaseDir="$HOME/DBMS"
+
+    # Check if there are any databases in the directory
+    if [ -z "$(ls -1 "$dataBaseDir")" ]; then
+        echo "No databases found. Cannot drop a database."
+        return
+    fi
+
     echo "Enter the name of the database you want to drop:"
     read dataBaseName
 
@@ -11,7 +19,7 @@ function dropDataBase() {
 
     if isStartWithChars "$dataBaseName"
     then
-        echo "[Error] Database name cannot start with a number or specail character."
+        echo "[Error] Database name cannot start with a number or special character."
         echo "Tip: Use alphabetic characters or underscores (_) at the beginning."
         return
     fi
@@ -28,7 +36,7 @@ function dropDataBase() {
     read confirmation
     if [[ "$confirmation" == "y" || "$confirmation" == "Y" ]]
     then
-        rm -rf "$HOME/DBMS/$dataBaseName"  # Remove the entire database directory and its contents
+        rm -rf "$dataBaseDir/$dataBaseName"  # Remove the entire database directory and its contents
         echo "Database '$dataBaseName' has been successfully deleted."
     else
         echo "Action canceled. Database '$dataBaseName' was not deleted."

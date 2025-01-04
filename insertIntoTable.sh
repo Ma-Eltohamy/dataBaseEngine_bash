@@ -1,15 +1,18 @@
 function insertIntoTable {
+    dataBaseName=$1
+
     echo "Enter the table name to insert data into:"
     read tableName
 
-    dataFile="$tableName.data"
-    metaFile="$tableName.meta"
-
-    if [[ ! -f "$dataFile" || ! -f "$metaFile" ]]
+    if ! isAlreadyExists -t "$dataBaseName" "$tableName"
     then
         echo "[Error] Table '$tableName' does not exist."
         return
     fi
+
+    dataFile="$HOME/DBMS/$dataBaseName/$tableName.data"
+    metaFile="$HOME/DBMS/$dataBaseName/$tableName.meta"
+
 
     # Get the primary key (from the 3rd line in the metadata file)
     primaryKey=$(sed -n '3p' "$metaFile" | xargs)
