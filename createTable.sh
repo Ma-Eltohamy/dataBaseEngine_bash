@@ -1,4 +1,6 @@
 function createTable {
+    dataBaseName=$1
+
     echo "Enter table name: "
     read tableName
 
@@ -16,15 +18,15 @@ function createTable {
         return
     fi
 
-    if isAlreadyExists -t "$tableName"
+    if isAlreadyExists -t "$dataBaseName" "$tableName"
     then
         echo "[Warning] The table name '$tableName' already exists."
         echo "Tip: Use a different name or proceed to modify the existing table name."
         return
     fi
 
-    dataFile="$tableName.data"
-    metaFile="$tableName.meta"
+    dataFile="$HOME/DBMS/$dataBaseName/$tableName.data"
+    metaFile="$HOME/DBMS/$dataBaseName/$tableName.meta"
 
     touch "$dataFile" "$metaFile"
 
@@ -105,7 +107,7 @@ function createTable {
         echo "$primaryKey"
         for ((i = 0; i < colsNum; i++))
         do
-            echo "Column $((i + 1)): ${colNames[i]} (${colTypes[i]})"
+            echo "${colNames[i]} (${colTypes[i]})"
         done
     } > "$metaFile"
 

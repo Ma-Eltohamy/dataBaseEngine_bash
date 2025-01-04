@@ -1,4 +1,6 @@
 function manageDataBase(){
+    dataBaseName=$1
+
     local options=(
         "Create Table"
         "List Tables"
@@ -16,25 +18,25 @@ function manageDataBase(){
         select option in "${options[@]}"
         do
             case $REPLY in
-                1) createTable
+                1) createTable "$dataBaseName"
                     break ;;
 
-                2) listTables
+                2) listTables  "$dataBaseName"
                     break ;;
 
-                3) dropTable
+                3) dropTable "$dataBaseName"
                     break ;;
 
-                4) insertIntoTable
+                4) insertIntoTable "$dataBaseName"
                     break ;;
 
-                5) selectFromTable
+                5) selectFromTable "$dataBaseName"
                     break ;;
 
-                6) echo "Deleting data from a table..."
+                6) deleteFromTable "$dataBaseName"
                     break;;
 
-                7) echo "Updating a row in a table..."
+                7) updateRowInTable "$dataBaseName"
                     break;;
                     
                 8) echo "Exiting table operations."

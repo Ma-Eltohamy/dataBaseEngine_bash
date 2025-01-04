@@ -28,5 +28,5 @@ function connectToDataBase() {
     cd "$HOME/DBMS/$dataBaseName"
     echo "Successfully connected to '$dataBaseName'."
 
-    manageDataBase
+    manageDataBase "$dataBaseName"
 }

@@ -40,6 +40,8 @@ function run(){
   source ./selectFromTable.sh
   source ./manageDataBase.sh
   source ./insertIntoTable.sh
+  source ./updateRowInTable.sh
+  source ./deleteFromTable.sh
   source ./dropTable.sh
   source ./validation.sh
 

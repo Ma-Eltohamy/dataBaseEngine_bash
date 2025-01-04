@@ -1,4 +1,6 @@
 function dropTable() {
+    dataBaseName=$1
+
     echo "Enter the table name to drop:"
     read tableName
 
@@ -16,14 +18,15 @@ function dropTable() {
         return
     fi
 
-    dataFile="$tableName.data"
-    metaFile="$tableName.meta"
-
-    if [[ ! -f "$dataFile" || ! -f "$metaFile" ]]
+    if ! isAlreadyExists -t "$dataBaseName" "$tableName"
     then
         echo "[Error] Table '$tableName' does not exist."
         return
     fi
+
+    dataFile="$HOME/DBMS/$dataBaseName/$tableName.data"
+    metaFile="$HOME/DBMS/$dataBaseName/$tableName.meta"
+
 
     echo "Dropping table '$tableName'..."
     # Confirm the action before proceeding
@@ -31,7 +34,8 @@ function dropTable() {
     read confirmation
     if [[ "$confirmation" == "y" || "$confirmation" == "Y" ]]
     then
-        rm  "$tableName.*"  # Remove the two files
+        rm "$HOME/DBMS/$dataBaseName/$tableName.data"
+        rm "$HOME/DBMS/$dataBaseName/$tableName.meta"
         echo "table '$tableName' has been successfully deleted."
     else
         echo "Action canceled. table '$tableName' was not deleted."

@@ -22,12 +22,13 @@ function selectFromTable() {
   while true
   do
     
-    PS3="Select data from the table: "
+    PS3="Please select an option to retrieve data from the table '$tableName'": 
     select choice in "${menuItems[@]}"
     do
       case $REPLY in
 
         1) # Select all data
+          echo
           echo "Displaying all data from the table:"
           # Read column headers from metadata
           # Combine headers and data, then format with `column`
@@ -35,8 +36,10 @@ function selectFromTable() {
             echo "$headers"
             cat "$dataFile"
           } | column -ts ":"
+          echo 
           break ;;
         2) # Select specific columns
+          echo
           echo "Enter the column numbers to select (e.g., 1 2):"
           read columns
           awkCommand=""
@@ -47,8 +50,10 @@ function selectFromTable() {
           awk "{print $awkCommand}" "$tableName.data"
           break ;;
         3) # Sort data
+          echo
           echo "Enter the column number to sort by:"
           read column
+          echo
 
           # Check if the column variable is empty
           if [[ -z "$column" ]]; then
@@ -63,7 +68,11 @@ function selectFromTable() {
           fi
 
           # Perform the sort operation
+        {
+          echo "$headers"
           sort -t":" -k"$column" "$tableName.data"
+        } | column -ts ":"
+          echo 
           break ;;
         4) # Exit
           echo "Exiting selection menu."
