@@ -73,6 +73,14 @@ function createTable {
             continue
         fi
 
+        # Check if column name already exists
+        if [[ " ${colNames[*]} " == *" $colName "* ]]
+        then
+            echo "[Error] Column name '$colName' already exists."
+            i=$((i - 1)) # Retry this column
+            continue
+        fi
+
         echo "Select data type for column '$colName':"
         select colType in INT STRING FLOAT
         do
