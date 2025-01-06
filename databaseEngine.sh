@@ -31,25 +31,25 @@ function printMenu(){
 }
 
 function run(){
-  source ./createDataBase.sh
-  source ./connectToDataBase.sh
-  source ./listDataBases.sh
-  source ./dropDataBase.sh
-  source ./createTable.sh
-  source ./listTables.sh
-  source ./selectFromTable.sh
-  source ./manageDataBase.sh
-  source ./insertIntoTable.sh
-  source ./updateRowInTable.sh
-  source ./deleteFromTable.sh
-  source ./dropTable.sh
-  source ./validation.sh
+  source ./modules/createDataBase.sh
+  source ./modules/connectToDataBase.sh
+  source ./modules/listDataBases.sh
+  source ./modules/dropDataBase.sh
+  source ./modules/createTable.sh
+  source ./modules/listTables.sh
+  source ./modules/selectFromTable.sh
+  source ./modules/manageDataBase.sh
+  source ./modules/insertIntoTable.sh
+  source ./modules/updateRowInTable.sh
+  source ./modules/deleteFromTable.sh
+  source ./modules/dropTable.sh
+  source ./modules/validation.sh
 
-  source ./sortData.sh
-  source ./selectAllData.sh
-  source ./selectByPrimaryKey.sh
-  source ./selectSpecificColumns.sh
-  source ./selectByCondition.sh
+  source ./modules/sortData.sh
+  source ./modules/selectAllData.sh
+  source ./modules/selectByPrimaryKey.sh
+  source ./modules/selectSpecificColumns.sh
+  source ./modules/selectByCondition.sh
 
   # first make sure that there's a "$HOME/DBMD" dir
   if ! isAlreadyExists -m 
