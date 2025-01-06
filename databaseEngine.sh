@@ -45,6 +45,7 @@ function run(){
   source ./dropTable.sh
   source ./validation.sh
 
+  source ./sortData.sh
   source ./selectAllData.sh
   source ./selectByPrimaryKey.sh
   source ./selectSpecificColumns.sh

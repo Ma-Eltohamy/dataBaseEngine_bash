@@ -19,6 +19,8 @@ function deleteFromTable {
     # Extract column names and types from metadata
     colNames=()
     colTypes=()
+    # we can simply do this insted
+    # colNum=$(wc -l < "$metaFile")
     for ((i = 4; i <= $(wc -l < "$metaFile"); i++)); do
         line=$(sed -n "${i}p" "$metaFile")
         colName=$(echo "$line" | cut -d "(" -f 1 | sed 's/^ //;s/ $//')

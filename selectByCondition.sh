@@ -19,22 +19,30 @@ function selectByCondition(){
     break
   fi
 
-  # Get the column name
   columnName=${headersArray[$((columnNumber - 1))]}
 
+  avaliableConditions=("==" "!=" ">" "<" ">=" "<=")
   echo "Enter a comparison operator (e.g., ==, !=, >, <, >=, <=):"
   read operator
+
+  isValid=false
+  for validOperator in "${avaliableConditions[@]}"; do
+      if [[ "$operator" == "$validOperator" ]]; then
+          isValid=true
+          break
+      fi
+  done
+
+  if ! $isValid; then
+      echo "[Error] Invalid operator. Please enter one of: ${avaliableConditions[*]}"
+      return
+  fi
 
   echo "Enter the value to compare (e.g., Manager, 5000):"
   read value
 
-  # Escape the value for safety
-  escapedValue=$(echo "$value" | sed 's/["]/\\"/g')
+  condition="\$$columnNumber $operator \"$value\""
 
-  # Construct the awk condition
-  condition="\$$columnNumber $operator \"$escapedValue\""
-
-  # Find and display rows that match the condition
   result=$(awk -F ":" "$condition" "$dataFile")
 
   if [ -z "$result" ]

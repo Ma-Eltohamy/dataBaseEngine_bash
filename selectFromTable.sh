@@ -17,13 +17,24 @@ function selectFromTable() {
   metaFile="$HOME/DBMS/$dataBaseName/$tableName.meta"
 
   # Get the primary key (from the 3rd line in the metadata file)
-  primaryKey=$(sed -n '3p' "$metaFile" | xargs)
+  primaryKey=$(sed -n '3p' "$metaFile")
   echo "The primary key is: $primaryKey"
 
   headers=$(sed -n '4,$p' "$metaFile" | cut -d '(' -f1)
   readarray -t headersArray <<< "$headers"
-  maxColumns=${#headersArray[@]} # Count the number of headers
+  maxColumns=${#headersArray[@]}
   headersString=$(IFS=":"; echo "${headersArray[*]}")
+
+  primaryKeyIndex=-1 
+
+  for i in "${!headersArray[@]}"
+  do
+    if [[ "${headersArray[$i]}" == "$primaryKey " ]]
+    then
+      primaryKeyIndex=$((i + 1)) 
+      break
+    fi
+  done
 
   while true
   do
@@ -40,7 +51,7 @@ function selectFromTable() {
           selectSpecificColumns "$headersArray"
           break ;;
         3) # Select by primary key
-          selectByPrimaryKey "$headersString"
+          selectByPrimaryKey "$headersString" "$primaryKeyIndex"
           break ;;
 
         4) # Select by condition
